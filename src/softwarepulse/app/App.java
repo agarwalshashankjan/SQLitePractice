@@ -15,7 +15,7 @@ public class App {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         SQLiteTest test=new SQLiteTest();
         ResultSet rs=test.displayUsers();
-        test.addUser("Vikas", "SS");
+        test.addUser("Vikas", "Yadav");
         while(rs.next()){
             
             System.out.println(rs.getString("fname")+" "+rs.getString("lname"));

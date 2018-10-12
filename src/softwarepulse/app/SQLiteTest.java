@@ -38,16 +38,15 @@ public class SQLiteTest {
             if(!(rs.next())){
                 System.out.println("Building the user table from populated values.");
                 Statement state2=con.createStatement();
-                state2.execute("create table user(id integer,"
-                +"fname varchar(60),"+"lname varchar(60),"
-                +"primary key(id));");
+                state2.execute("create table user(id integer PRIMARY KEY AUTOINCREMENT ,"
+                +"fname varchar(60),"+"lname varchar(60));");
                 
                 PreparedStatement prep=con.prepareStatement("INSERT INTO user (fname,lname) VALUES ('Shashank','Agarwal');");
                 
-                PreparedStatement prep2=con.prepareStatement("insert into user values(?,?,?);");
-                prep2.setString(1, "9");
-                prep2.setString(2, "Shailesh");
-                prep2.setString(3, "Singh");
+                PreparedStatement prep2=con.prepareStatement("insert into user (fname,lname) values(?,?);");
+//                prep2.setString(1, "9");
+                prep2.setString(1, "Shailesh");
+                prep2.setString(2, "Singh");
                 prep2.execute();
             }
         } 
@@ -57,10 +56,10 @@ public class SQLiteTest {
         if(con==null){
             getConnection();
         }
-        PreparedStatement prep=con.prepareStatement("insert into user values (?,?,?);");
-                prep.setString(1, "2");
-                prep.setString(2, firstname);
-                prep.setString(3, lastname);
+        PreparedStatement prep=con.prepareStatement("insert into user (fname,lname) values (?,?);");
+//                prep.setString(1, "2");
+                prep.setString(1, firstname);
+                prep.setString(2, lastname);
                 prep.execute();
     }
 }
